@@ -1,39 +1,35 @@
-spring:
-  profiles:
-    active:
-    - '@spring.profiles.active@'
-
 dozer:
   mapping-files:
   - classpath:mappings/formatter-mappings.xml
   
 server:
-  port: 9090
-  servlet:
-    context-path: /
-    
----
+  port: 8080
 
 spring:
-  config:
-    activate:
-      on-profile: grafana
-
+  profiles:
+    active:
+      - '@spring.profiles.active@'
   application:
-    name: Arquetipo de Spring Boot
-  jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQLDialect
-    generate-ddl: true
-    hibernate:
-      ddl-auto: none
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true
-
+    name: MsMonitoringApplication # Nombre del microservicio
   datasource:
     url: jdbc:mysql://localhost:3306/grafana_db
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: grafana_user
     password: grafana_password
+  jpa:
+    show-sql: true  # Mostrar consultas SQL en el log
+    hibernate:
+      ddl-auto: none  # No modificar el esquema de la base de datos automáticamente
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect  # Configura el dialecto de MySQL
+
+# Otras configuraciones que puedas necesitar
+logging:
+  level:
+    root: INFO  # Puedes ajustar el nivel de log
+
+
 

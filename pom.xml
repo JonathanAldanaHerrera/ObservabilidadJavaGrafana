@@ -75,6 +75,18 @@
     </dependency>
 
     <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    <!-- Conector MySQL -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.29</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
     </dependency>
@@ -91,6 +103,12 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>javax.persistence-api</artifactId>
+      <version>2.2</version>
+    </dependency>
+
 
     <!-- Dozer -->
     <dependency>
@@ -154,7 +172,6 @@
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
-          <encoding>${project.encoding}</encoding>
         </configuration>
       </plugin>
       <plugin>
