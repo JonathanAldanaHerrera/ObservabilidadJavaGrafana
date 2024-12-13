@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    active:
+    - '@spring.profiles.active@'
+
+dozer:
+  mapping-files:
+  - classpath:mappings/formatter-mappings.xml
+  
+server:
+  port: 9090
+  servlet:
+    context-path: /
+    
+---
+
+spring:
+  config:
+    activate:
+      on-profile: grafana
+
+  application:
+    name: Arquetipo de Spring Boot
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/grafana_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: grafana_user
+    password: grafana_password
+
