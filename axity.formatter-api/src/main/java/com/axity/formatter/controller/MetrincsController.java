@@ -1,6 +1,7 @@
 package com.axity.formatter.controller;
 
-import com.axity.formatter.commons.grafana.EdgesResponseDto;
+import com.axity.formatter.commons.dto.EdgesResponseDto;
+import com.axity.formatter.commons.dto.NodesResponseDto;
 import com.axity.formatter.commons.response.GenericResponseDto;
 import com.axity.formatter.facade.MonitoringFacade;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.axity.formatter.commons.grafana.NodesResponseDto;
 
 @RestController
 @RequestMapping("/nodegraph")

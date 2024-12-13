@@ -1,7 +1,4 @@
-dozer:
-  mapping-files:
-  - classpath:mappings/formatter-mappings.xml
-  
+
 server:
   port: 8080
 

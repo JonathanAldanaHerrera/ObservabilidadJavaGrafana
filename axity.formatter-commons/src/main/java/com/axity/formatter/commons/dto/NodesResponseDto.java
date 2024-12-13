@@ -1,4 +1,4 @@
-package com.axity.formatter.commons.grafana;
+package com.axity.formatter.commons.dto;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
