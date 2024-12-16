@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: "Example Dashboard"  # Nombre que aparece en Grafana
+    orgId: 1
+    folder: ""  # Carpeta raíz de Grafana
+    type: "file"
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards  # Ruta dentro del contenedor donde se guardan los JSON
