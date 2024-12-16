@@ -1,0 +1,82 @@
+
+{
+    "nodes": [
+      {
+        "id": "regla_1",
+        "title": "Regla 1",
+        "subtitle": "Regla de negocio",
+        "highlighted": true,
+        "arc__success": 0.8,
+        "arc__errors": 0.2
+      },
+      {
+        "id": "microservicio_auth",
+        "title": "AuthService",
+        "subtitle": "Microservicio",
+        "highlighted": false,
+        "arc__success": 0.9,
+        "arc__errors": 0.1
+      },
+      {
+        "id": "microservicio_payment",
+        "title": "PaymentService",
+        "subtitle": "Microservicio",
+        "highlighted": true,
+        "arc__success": 0.7,
+        "arc__errors": 0.3
+      },
+      {
+        "id": "endpoint_login",
+        "title": "/auth/login",
+        "subtitle": "Endpoint",
+        "highlighted": false,
+        "arc__success": 0.95,
+        "arc__errors": 0.05
+      },
+      {
+        "id": "endpoint_process",
+        "title": "/payment/process",
+        "subtitle": "Endpoint",
+        "highlighted": true,
+        "arc__success": 0.6,
+        "arc__errors": 0.4
+      }
+    ]
+  }
+  
+
+{
+    "edges": [
+        {
+            "id": "edge_1",
+            "source": "regla_1",
+            "target": "microservicio_auth"
+        },
+        {
+            "id": "edge_2",
+            "source": "regla_1",
+            "target": "endpoint_login"
+        },
+        {
+            "id": "edge_3",
+            "source": "regla_1",
+            "target": "microservicio_payment"
+        },
+        {
+            "id": "edge_4",
+            "source": "regla_1",
+            "target": "endpoint_process"
+        },
+        {
+            "id": "edge_5",
+            "source": "microservicio_auth",
+            "target": "endpoint_login"
+        },
+        {
+            "id": "edge_6",
+            "source": "microservicio_payment",
+            "target": "endpoint_process"
+        }
+    ]
+}
+  

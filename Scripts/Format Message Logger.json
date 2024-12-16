@@ -1,0 +1,18 @@
+{
+  "Protocol": "HTTP/1.1", 
+  "Method": "POST", 
+  "ContentType": null, 
+  "ContentLength": null, 
+  "Scheme": "http", 
+  "Host": "localhost:9091", 
+  "PathBase": "", 
+  "Path": "/api/auth/login", 
+  "StatusCode": 200, 
+  "QueryString": "", 
+  "HostingRequestStartingLog": "Request starting HTTP/1.1 POST http://localhost:9091/api/auth/login - -", 
+  "EventId": {"Id": 1}, 
+  "SourceContext": "Microsoft.AspNetCore.Hosting.Diagnostics", 
+  "RequestId": "1dde2dca-1e78-4f5b-91b1-9f9e06bfa1d8", 
+  "RequestPath": "/api/auth/login", 
+  "ConnectionId": "4033b783-3c6b-4292-8fe4-9b992114ce22"
+}
