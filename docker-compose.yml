@@ -1,0 +1,58 @@
+x-compose-project:
+  name: formatter-ms
+
+services:
+
+  formatter:
+    build:  #Se construye la imagen del ms
+      context: ./formatter-microservice
+      dockerfile: Dockerfile 
+    container_name: formatter
+    networks: 
+      - formatternet
+    ports:
+      - "8080:8080"  # Puerto de formatter
+    depends_on:
+      - mysql
+      
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    networks: 
+      - formatternet
+    ports:
+      - "3000:3000"  # Puerto de grafana
+    environment:
+      - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource # ID del plugin infinity
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./init-scripts-grafana/datasource:/etc/grafana/provisioning/datasources  # Configuracion de datasource
+      - ./init-scripts-grafana/dashboards:/etc/grafana/provisioning/dashboards  # Archivos de configuración de dashboards
+      - ./init-scripts-grafana/dashboards:/var/lib/grafana/dashboards  # Dashboards personalizados en JSON
+    depends_on:
+          - mysql
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234 # Cambia esto por una contraseña segura
+    ports:
+      - "3306:3306" # Puerto de mysql
+    volumes:
+      - mysql_data:/var/lib/mysql         # Persistencia de los datos
+      - ./init-scripts-sql:/docker-entrypoint-initdb.d  # Directorio para scripts SQL
+    networks:
+      - formatternet
+
+volumes:
+  grafana-storage:
+    name: grafana-storage
+  mysql_data:
+    name: mysql-storage
+
+networks:
+  formatternet:
+    driver: bridge
+    name: formatter_net

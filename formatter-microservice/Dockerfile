@@ -4,10 +4,10 @@ WORKDIR /home/app
 COPY . ./
 RUN mvn -f /home/app/pom.xml clean package
 FROM openjdk:11
-ENV JAR_FILE /home/app/axity.formatter-api/target/*.jar
+ENV JAR_FILE=/home/app/axity.formatter-api/target/*.jar
 COPY --from=build ${JAR_FILE} /app.jar
 
-ENV TZ America/Mexico_City
-EXPOSE 9090
+ENV TZ=America/Mexico_City
+EXPOSE 8080
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar","--spring.profiles.active=local" ]
