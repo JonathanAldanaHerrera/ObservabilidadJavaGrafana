@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +51,14 @@ public class MonitoringServiceImpl implements MonitoringService {
         for (Object[] result : statusCounts) {
             String path = (String) result[0];
             String method = (String) result[1];
-            Long count2xx = (Long) result[2];
-            Long countOtherCodes = (Long) result[3];
+            
+            //Se obtienen valores bigint
+            BigInteger count2xxBigInt = (BigInteger) result[2];
+            BigInteger countOtherCodesBigInt = (BigInteger) result[3];
+            
+            // Convertir a Long
+            Long count2xx = count2xxBigInt.longValue();
+            Long countOtherCodes = countOtherCodesBigInt.longValue();
 
             // Almacenar el conteo de 2xx y otros códigos para cada path y method
             statusCountMap

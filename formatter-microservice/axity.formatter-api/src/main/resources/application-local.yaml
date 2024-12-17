@@ -6,18 +6,22 @@ spring:
       on-profile: local
 
   application:
-    name: MsMonitoringApplication # Nombre del microservicio
+    name: Formatter-microservice
   jpa:
-    show-sql: true  # Mostrar consultas SQL en el log
+    database: default
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: false
     hibernate:
-      ddl-auto: none  # No modificar el esquema de la base de datos automáticamente
+      ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect  # Configura el dialecto de MySQL
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/grafana_db
+    url: jdbc:mysql://mysql:3306/monitoringDB?allowPublicKeyRetrieval=true&useSSL=FALSE
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: grafana_user
-    password: grafana_password
+    username: root
+    password: 1234
+    

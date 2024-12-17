@@ -9,20 +9,20 @@ import java.util.List;
 
 @Repository
 public interface LogsRepository extends JpaRepository<LogsDO, Long> {
-	@Query(value = """
-	        SELECT 
-	            JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.RequestPath')) AS path,
-	            JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.Method')) AS method,
-	            COUNT(CASE 
-	                    WHEN JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.StatusCode')) LIKE '2%' THEN 1
-	                    ELSE NULL
-	                END) AS count_2xx,
-	            COUNT(CASE 
-	                    WHEN JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.StatusCode')) NOT LIKE '2%' THEN 1
-	                    ELSE NULL
-	                END) AS count_other_codes
-	        FROM logs l
-	        GROUP BY path, method
-	    """, nativeQuery = true)
+	@Query(value = 
+	    "SELECT " +
+	    "   JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.RequestPath')) AS path, " +
+	    "   JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.Method')) AS method, " +
+	    "   CAST(COUNT(CASE " +
+	    "                WHEN JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.StatusCode')) LIKE '2%' THEN 1 " +
+	    "                ELSE NULL " +
+	    "            END) AS UNSIGNED) AS count_2xx, " +
+	    "   CAST(COUNT(CASE " +
+	    "                WHEN JSON_UNQUOTE(JSON_EXTRACT(l.Message, '$.StatusCode')) NOT LIKE '2%' THEN 1 " +
+	    "                ELSE NULL " +
+	    "            END) AS UNSIGNED) AS count_other_codes " +
+	    "FROM logs l " +
+	    "GROUP BY path, method", 
+	    nativeQuery = true)
 	    List<Object[]> findStatusCodeCountByPathAndMethod();
 }

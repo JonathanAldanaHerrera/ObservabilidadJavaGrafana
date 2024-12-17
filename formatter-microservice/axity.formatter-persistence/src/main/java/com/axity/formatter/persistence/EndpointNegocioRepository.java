@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface EndpointNegocioRepository extends JpaRepository<EndpointNegocioDO, EndpointNegocioIdClass> {
 
-    @Query(value = """
-        SELECT en.pk_negocio AS negocioId, en.pk_endpoint AS endpointId
-        FROM endpoint_negocio en
-        """, nativeQuery = true)
+	@Query(value = 
+	    "SELECT en.pk_negocio AS negocioId, en.pk_endpoint AS endpointId " +
+	    "FROM endpoint_negocio en", 
+	    nativeQuery = true)
     List<Object[]> findNegocioEndpointRelations();
     
     // Consulta para obtener el negocioId relacionado con un endpointId
